@@ -75,6 +75,7 @@ typedef void (* handler_t) (uint64_t, uint64_t);
 
 handler_t handler_table[NUM_INSTRUCTYPE];
 
+void init_handler_table();
 
 /* 指令周期 */
 void instruction_cycle();
@@ -83,7 +84,7 @@ void instruction_cycle();
 
 /************************** 创建各种指令的执行过程 (执行+写回+update PC) ********************/
 /************************** 类似硬件电路的 加法器 乘法器 ********************/
-void move_reg_reg_handler(uint64_t src, uint64_t dst);
+void mov_reg_reg_handler(uint64_t src, uint64_t dst);
 
 void add_reg_reg_handler(uint64_t src, uint64_t dst);
 

@@ -1,3 +1,7 @@
+#ifndef main_guard
+#define main_guard
+
+
 #include <stdio.h>
 
 #include "cpu/register.h"
@@ -24,19 +28,19 @@ int main() {
 
     reg.rip = (uint64_t)&program[11];
 
-    mm[va2pa(0x7ffffffee4b0)] = 0x08000660;  // %rbp
-    mm[va2pa(0x7ffffffee4a8)] = 0x0;  
-    mm[va2pa(0x7ffffffee4a0)] = 0x0000abcd;  
-    mm[va2pa(0x7ffffffee498)] = 0x12340000;  
-    mm[va2pa(0x7ffffffee490)] = 0x08000660;  // %rsp
+    write64bits_dram(va2pa(0x7ffffffee4b0), 0x08000660); // %rbp
+    write64bits_dram(va2pa(0x7ffffffee4a0), 0xabcd);
+    write64bits_dram(va2pa(0x7ffffffee4a8), 0x0);
+    write64bits_dram(va2pa(0x7ffffffee498), 0x12340000);
+    write64bits_dram(va2pa(0x7ffffffee490), 0x08000660); // %rsp
 
-
-
+    uint64_t pa = va2pa(0x7ffffffee4b0);
+    printf("result = %16lx\n", *(uint64_t *)&mm[pa]);
 
     // run
-    for (int i = 0; i < 15; ++i) {
-        instruction_cycle();
-    }
+    // for (int i = 0; i < 15; ++i) {
+    //     instruction_cycle();
+    // };
 
     // verify
     int match = 1;
@@ -56,14 +60,14 @@ int main() {
         printf("Regist not match\n");
     }
 
-    int match = 1;
+    match = 1;
     match = match && (mm[va2pa(0x7ffffffee4b0)] == 0x08000660);  // %rbp
-    match = match && (mm[va2pa(0x7ffffffee4a8)] = 0x1234abcd);  
-    match = match && (mm[va2pa(0x7ffffffee4a0)] = 0x0000abcd);  
-    match = match && (mm[va2pa(0x7ffffffee498)] = 0x12340000);  
-    match = match && (mm[va2pa(0x7ffffffee490)] = 0x08000660);  // %rsp    
+    match = match && (mm[va2pa(0x7ffffffee4a8)] == 0x1234abcd);  
+    match = match && (mm[va2pa(0x7ffffffee4a0)] == 0x0000abcd);  
+    match = match && (mm[va2pa(0x7ffffffee498)] == 0x12340000);  
+    match = match && (mm[va2pa(0x7ffffffee490)] == 0x08000660);  // %rsp    
     
-    if (match = 1) {
+    if (match == 1) {
         printf("Memory match\n");
     }
     else {
@@ -72,3 +76,7 @@ int main() {
 
     return 0;
 }
+
+
+#endif
+
