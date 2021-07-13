@@ -1,8 +1,10 @@
-.gitignore
+
+# enumerate files that I don't want to track
 add
 add.c
 add.txt
 program
+csapp
 
 # Prerequisites
 *.d
