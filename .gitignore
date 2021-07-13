@@ -1,10 +1,8 @@
-
-../.gitignore
-../add
-../add.c
-../add.txt
-../makefile
-../program
+.gitignore
+add
+add.c
+add.txt
+program
 
 # Prerequisites
 *.d
