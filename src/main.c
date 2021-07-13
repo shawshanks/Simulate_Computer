@@ -40,7 +40,7 @@ int main() {
     print_stack();
 
     // run
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < 7; ++i) {
         instruction_cycle();
         print_register();
         print_stack();
@@ -56,7 +56,7 @@ int main() {
     match = match && (reg.rdi == 0x12340000);
     match = match && (reg.rbp == 0x7ffffffee4b0);
     match = match && (reg.rsp == 0x7ffffffee490);
-
+ 
     if (match == 1) {
         printf("Register match\n");
     }
