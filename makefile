@@ -15,6 +15,7 @@ CODE = ./src/Memory/instruction.c ./src/Disk/code.c ./src/Memory/dram.c ./src/CP
 
 csapp:
 	$(CC) $(CFLAGS) -I$(SRC) $(CODE) -o $(EXECUTABLE)
-
-run:
 	./$(EXECUTABLE)
+
+# run:
+# 	./$(EXECUTABLE)

@@ -28,7 +28,7 @@ int main() {
     reg.rbp = 0x7ffffffee4b0;
     reg.rsp = 0x7ffffffee490;
 
-    reg.rip = (uint64_t)&program[10];
+    reg.rip = (uint64_t)&program[11];
 
     write64bits_dram(va2pa(0x7ffffffee4b0), 0x08000660); // %rbp
     write64bits_dram(va2pa(0x7ffffffee4a0), 0xabcd);
@@ -40,7 +40,7 @@ int main() {
     print_stack();
 
     // run
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < 15; ++i) {
         instruction_cycle();
         print_register();
         print_stack();
@@ -61,7 +61,7 @@ int main() {
         printf("Register match\n");
     }
     else {
-        printf("Regist not match\n");
+        printf("Register not match\n");
     }
 
     match = 1;

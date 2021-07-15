@@ -5,6 +5,7 @@ add.c
 add.txt
 program
 csapp
+.vscode/
 
 # Prerequisites
 *.d
